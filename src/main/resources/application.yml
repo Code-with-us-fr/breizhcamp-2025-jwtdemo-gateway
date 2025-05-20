@@ -1,0 +1,46 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: jwtdemo-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: saloon-api
+          uri: http://localhost:8081
+          predicates:
+            - Path=/**
+            - Host={segment}.breizhcamp.com
+          filters:
+            #- AddRequestHeader=X-Gateway-Request, Gateway
+            #- SetResponseHeader=X-Gateway-Response, Another great day in {segment}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1 # 1 request / 5 seconds
+                redis-rate-limiter.burstCapacity: 5
+                redis-rate-limiter.requestedTokens: 5
+                key-resolver: "#{@ipKeyResolver}"
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    distribution:
+      maximum-expected-value:
+        all: 60000
+      percentiles:
+        all: 0.5, 0.75, 0.95, 0.99
+  server:
+    port: 18080
