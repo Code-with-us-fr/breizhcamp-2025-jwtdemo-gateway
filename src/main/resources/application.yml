@@ -12,8 +12,10 @@ spring:
           uri: http://localhost:8081
           predicates:
             - Path=/**
+            - Host={segment}.breizhcamp.com
           filters:
             - AddRequestHeader=X-Gateway-Request, Gateway
+            - SetResponseHeader=X-Gateway-Response, Another great day in {segment}
 
 
 logging:
