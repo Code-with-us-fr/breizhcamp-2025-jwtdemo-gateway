@@ -1,11 +1,6 @@
-### Access using gateway with host
+### Access using gateway
 GET http://localhost:8080/saloon
-Host: far-west.breizhcamp.com
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwaXN0b2xlcm8iLCJyb2xlIjoic2hvb3RlciIsImV4cCI6MTc0NzA0NDg0MX0.gpK2GZCduyEyUA5Sd46bvx4EKlqHjIdgIExzbXiK26w
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwaXN0b2xlcm8iLCJyb2xlIjoic2hvb3RlciIsImV4cCI6MTc0ODM1MjcxOH0.Z2oLSM7mW0unJKREXIpeAel32L9mAYZHPFivou8vkJI
 
-### Access using gateway with rejected user agent
-GET http://localhost:8080/saloon
-Host: far-west.breizhcamp.com
-User-Agent: The bad sherif
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwaXN0b2xlcm8iLCJyb2xlIjoic2hvb3RlciIsImV4cCI6MTc0NzA0NDg0MX0.gpK2GZCduyEyUA5Sd46bvx4EKlqHjIdgIExzbXiK26w
-
+### Metrics
+GET http://localhost:18080/actuator/metrics/spring.cloud.gateway.requests
