@@ -1,0 +1,7 @@
+# https://docs.docker.com/compose/compose-file/
+services:
+  valkey:
+    image: docker.io/valkey/valkey:8.0-alpine
+    ports:
+      - "6379:6379"
+
